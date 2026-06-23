@@ -1,0 +1,216 @@
+:root{
+  /* Sky */
+  --sky-top:#1f8fd6;
+  --sky-mid:#5cb6e8;
+  --sky-low:#a9ddf3;
+  /* Sun */
+  --sun:#fff0c4;
+  --sun-glow:rgba(255,221,128,.55);
+  /* Mountains */
+  --mtn-far:#7d9ec2;
+  --mtn-mid:#4f739b;
+  --mtn-near:#2f4d6e;
+  --snow:#eef6fc;
+  /* Ocean */
+  --sea-top:#1e93b8;
+  --sea-deep:#0a5b7d;
+  --foam:#e2f5fc;
+  /* Ink + glass */
+  --ink:#0a2738;
+  --ink-soft:#3a5366;
+  --glass:rgba(255,255,255,.74);
+  --glass-edge:rgba(255,255,255,.85);
+  --accent:#0a6f93;
+  --horizon:58vh;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+html,body{height:100%;}
+
+body{
+  font-family:"Inter",system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--sky-low);
+  min-height:100dvh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- Scene ---------- */
+.scene{position:fixed;inset:0;overflow:hidden;z-index:0;}
+
+.sky{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,var(--sky-top) 0%,var(--sky-mid) 36%,var(--sky-low) 58%);
+}
+
+.sun{
+  position:absolute;
+  top:14%;right:16%;
+  width:130px;height:130px;border-radius:50%;
+  background:radial-gradient(circle at 50% 50%,#fffaf0 0%,var(--sun) 42%,rgba(255,224,150,0) 70%);
+  box-shadow:0 0 120px 60px var(--sun-glow);
+  will-change:transform;
+}
+
+.mountains{
+  position:absolute;left:0;right:0;
+  top:28vh;height:30vh;
+  will-change:transform;
+}
+.mountains svg{display:block;width:100%;height:100%;}
+
+.ocean{
+  position:absolute;left:0;right:0;
+  top:var(--horizon);bottom:0;
+  background:linear-gradient(180deg,var(--sea-top) 0%,var(--sea-deep) 100%);
+  overflow:hidden;
+}
+/* moving foam streaks on the water */
+.waves{position:absolute;left:-50%;width:200%;height:100%;}
+.waves svg{display:block;width:100%;height:100%;}
+.wave-1{opacity:.55;animation:drift 19s linear infinite;}
+.wave-2{opacity:.32;animation:drift 31s linear infinite reverse;top:0;position:absolute;}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(25%)}}
+
+/* the signature: a sail gliding along the horizon */
+.sail{
+  position:absolute;
+  top:calc(var(--horizon) - 34px);
+  left:0;width:46px;height:54px;
+  z-index:2;
+  animation:sail-across 34s linear infinite;
+  will-change:transform;
+}
+.sail .bob{animation:bob 4.2s ease-in-out infinite;transform-origin:bottom center;}
+@keyframes sail-across{
+  0%{transform:translateX(-8vw)}
+  100%{transform:translateX(108vw)}
+}
+@keyframes bob{
+  0%,100%{transform:translateY(0) rotate(-2deg)}
+  50%{transform:translateY(4px) rotate(2deg)}
+}
+
+/* ---------- Content ---------- */
+.page{
+  position:relative;z-index:5;
+  min-height:100dvh;
+  display:flex;flex-direction:column;
+  padding:clamp(16px,2.4vw,28px) clamp(18px,4vw,56px) clamp(20px,3vh,34px);
+  gap:clamp(14px,2.2vh,26px);
+}
+
+/* nav */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:18px;flex-wrap:wrap;
+}
+.brand{
+  font-family:"Space Grotesk",sans-serif;
+  font-weight:700;font-size:1.15rem;letter-spacing:-.01em;
+  color:var(--ink);
+  display:flex;align-items:center;gap:9px;
+}
+.brand .dot{width:11px;height:11px;border-radius:50%;
+  background:var(--foam);box-shadow:0 0 0 3px rgba(10,111,147,.6);}
+.links{display:flex;gap:4px;flex-wrap:wrap;list-style:none;
+  background:rgba(255,255,255,.45);
+  backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+  border:1px solid rgba(255,255,255,.6);
+  padding:5px;border-radius:999px;}
+.links a{
+  display:block;text-decoration:none;color:var(--ink-soft);
+  font-size:.86rem;font-weight:500;
+  padding:7px 15px;border-radius:999px;
+  transition:background .18s ease,color .18s ease;
+}
+.links a:hover,.links a:focus-visible{color:var(--ink);background:rgba(255,255,255,.7);}
+.links a[aria-current="page"]{
+  color:#fff;background:var(--accent);
+  box-shadow:0 4px 12px rgba(10,111,147,.35);
+}
+
+/* hero */
+.hero{margin-top:clamp(6px,2vh,28px);max-width:660px;}
+.eyebrow{
+  font-family:"JetBrains Mono",monospace;font-size:.72rem;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:10px;
+  text-shadow:0 1px 0 rgba(255,255,255,.45);
+}
+.hero h1{
+  font-family:"Space Grotesk",sans-serif;
+  font-weight:700;letter-spacing:-.02em;line-height:.96;
+  font-size:clamp(2.8rem,7vw,4.6rem);
+  color:var(--ink);
+  text-shadow:0 2px 18px rgba(255,255,255,.35);
+}
+.role{
+  margin-top:12px;font-size:clamp(.98rem,1.5vw,1.12rem);
+  font-weight:500;color:var(--ink);
+  max-width:30ch;
+}
+.role b{color:var(--accent);font-weight:600;}
+
+/* fill the gap so cards drop to the lower water area */
+.spacer{flex:1 1 auto;min-height:8px;}
+
+/* card row */
+.cards{
+  display:grid;gap:clamp(12px,1.6vw,18px);
+  grid-template-columns:repeat(3,1fr);
+}
+.card{
+  background:var(--glass);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid var(--glass-edge);
+  border-radius:18px;
+  padding:clamp(15px,1.5vw,20px);
+  box-shadow:0 14px 34px rgba(8,40,60,.22);
+  display:flex;flex-direction:column;gap:9px;
+}
+.card h2{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:1.02rem;font-weight:600;letter-spacing:-.01em;
+  display:flex;align-items:center;gap:9px;
+}
+.card h2 .ico{font-size:1.05rem;line-height:1;}
+.card p{font-size:.86rem;line-height:1.5;color:var(--ink-soft);}
+.motto{
+  font-style:italic;font-size:.82rem;color:var(--accent);
+  margin-top:auto;padding-top:4px;
+}
+
+/* tech chips */
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px;}
+.chips span{
+  font-family:"JetBrains Mono",monospace;font-size:.74rem;
+  color:var(--ink);background:rgba(10,111,147,.1);
+  border:1px solid rgba(10,111,147,.22);
+  padding:5px 9px;border-radius:8px;
+  transition:transform .15s ease,background .15s ease;
+}
+.chips span:hover{transform:translateY(-2px);background:rgba(10,111,147,.18);}
+
+/* ---------- Responsive ---------- */
+@media (max-width:880px){
+  .cards{grid-template-columns:1fr 1fr;}
+  .card.tech{grid-column:1 / -1;}
+}
+@media (max-width:600px){
+  :root{--horizon:50vh;}
+  body{overflow-y:auto;}
+  .page{min-height:auto;}
+  .cards{grid-template-columns:1fr;}
+  .card.tech{grid-column:auto;}
+  .links{justify-content:center;}
+  .sail{display:none;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .wave-1,.wave-2,.sail,.sail .bob{animation:none;}
+}
+
+a:focus-visible,.chips span:focus-visible{outline:3px solid #fff;outline-offset:2px;}

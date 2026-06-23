@@ -1,1 +1,115 @@
-<h1>Under construction</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aleksanteri — Computer Science & Things I Build</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- ===== Scene ===== -->
+  <div class="scene" aria-hidden="true">
+    <div class="sky"></div>
+    <div class="sun" data-depth="6"></div>
+
+    <div class="mountains" data-depth="14">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+        <!-- far range -->
+        <path fill="var(--mtn-far)" d="M0,230 L150,150 L300,210 L470,120 L640,200 L820,130 L1010,205 L1200,140 L1440,215 L1440,320 L0,320 Z"/>
+        <!-- near range -->
+        <path fill="var(--mtn-near)" d="M0,300 L120,210 L240,275 L400,170 L560,260 L720,150 L900,255 L1080,185 L1260,265 L1440,200 L1440,320 L0,320 Z"/>
+        <!-- snow caps -->
+        <path fill="var(--snow)" d="M400,170 L430,196 L412,194 L400,205 L386,193 L370,196 Z"/>
+        <path fill="var(--snow)" d="M720,150 L752,180 L732,177 L720,189 L705,176 L688,180 Z"/>
+        <path fill="var(--snow)" d="M1080,185 L1106,208 L1090,206 L1080,215 L1067,205 L1054,208 Z"/>
+      </svg>
+    </div>
+
+    <div class="ocean">
+      <div class="waves wave-1">
+        <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill="none" stroke="var(--foam)" stroke-width="2.5" stroke-linecap="round"
+            d="M0,40 Q90,18 180,40 T360,40 T540,40 T720,40 T900,40 T1080,40 T1260,40 T1440,40"/>
+        </svg>
+      </div>
+      <div class="waves wave-2">
+        <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill="none" stroke="var(--foam)" stroke-width="2"
+            d="M0,90 Q120,70 240,90 T480,90 T720,90 T960,90 T1200,90 T1440,90"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- signature: a sail crossing the horizon -->
+    <div class="sail">
+      <svg class="bob" viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
+        <line x1="30" y1="6" x2="30" y2="50" stroke="#0a2738" stroke-width="2.4"/>
+        <path d="M30,8 C44,18 47,36 44,48 L30,48 Z" fill="#f6fbff"/>
+        <path d="M30,12 C20,22 19,38 22,48 L30,48 Z" fill="#cfe9f6"/>
+        <path d="M14,52 L46,52 L40,62 L20,62 Z" fill="#0a2738"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ===== Content ===== -->
+  <div class="page">
+    <nav>
+      <div class="brand"><span class="dot"></span>Aleksanteri</div>
+      <ul class="links">
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="hobbies.html">Hobbies</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="tech.html">Tech</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero">
+      <div class="eyebrow">computer science · maker</div>
+      <h1>Hi, I'm<br/>Aleksanteri.</h1>
+      <p class="role">
+        I build across the stack and into games — happiest moving between
+        <b>low-level C</b>, where every bit and instruction counts, and
+        <b>high-level system design</b>.
+      </p>
+    </header>
+
+    <div class="spacer"></div>
+
+    <section class="cards" aria-label="What I'm about">
+      <article class="card">
+        <h2><span class="ico">🌊</span>On the water &amp; in the gym</h2>
+        <p>Regular at the gym, and out windsurfing or kitesurfing whenever it's windy. Earlier years: football, downhill skiing, and sailing.</p>
+        <p class="motto">"Healthy body, healthy mind."</p>
+      </article>
+
+      <article class="card">
+        <h2><span class="ico">🛠️</span>Things I build &amp; play</h2>
+        <p>A go-kart from a chainsaw engine, a combustion-engine surfboard, and a campus taco-truck stall (with its own site). For fun with friends: CS2, League, and a Minecraft server I self-hosted on an old home PC.</p>
+      </article>
+
+      <article class="card tech">
+        <h2><span class="ico">⚙️</span>Toolbox</h2>
+        <div class="chips">
+          <span tabindex="0">C / C++</span>
+          <span tabindex="0">Python</span>
+          <span tabindex="0">React</span>
+          <span tabindex="0">JavaScript</span>
+          <span tabindex="0">Node.js</span>
+          <span tabindex="0">SQL</span>
+          <span tabindex="0">Docker</span>
+          <span tabindex="0">Git</span>
+          <span tabindex="0">Unity</span>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <script src="assets/js/index.js"></script>
+</body>
+</html>
