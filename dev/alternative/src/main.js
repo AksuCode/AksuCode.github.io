@@ -1,19 +1,19 @@
 import * as THREE from 'three';
-import { PLYLoader } from 'three/addons/loaders/PLYLoader.js';
+import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 
 const width = window.innerWidth, height = window.innerHeight;
 
 // init
 
-const camera = new THREE.PerspectiveCamera( 70, width / height, 0.01, 10 );
-camera.position.z = 1;
+const camera = new THREE.PerspectiveCamera( 70, width / height, 0.01, 1000 );
+camera.position.z = 500;
+camera.lookAt(0,0,0);
 
 const scene = new THREE.Scene();
 
-const loader = new PLYLoader();
-const geometry = await loader.loadAsync( './assets/models/sailboat.ply' );
-const mesh = new THREE.Mesh( geometry );
-scene.add( mesh );
+const loader = new FBXLoader();
+const object3D = await loader.loadAsync( './models/sailboat.fbx' );
+scene.add( object3D );
 
 const renderer = new THREE.WebGLRenderer( { antialias: true } );
 renderer.setSize( width, height );
@@ -24,8 +24,8 @@ document.body.appendChild( renderer.domElement );
 
 function animate( time ) {
 
-	mesh.rotation.x = time / 2000;
-	mesh.rotation.y = time / 1000;
+	object3D.rotation.x = time / 2000;
+	object3D.rotation.y = time / 1000;
 
 	renderer.render( scene, camera );
 
