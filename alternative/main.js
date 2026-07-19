@@ -1,4 +1,5 @@
-import * as THREE from './libs/three.module.js';
+import * as THREE from 'three';
+import { PLYLoader } from 'three/addons/loaders/PLYLoader.js';
 
 const width = window.innerWidth, height = window.innerHeight;
 
@@ -9,10 +10,9 @@ camera.position.z = 1;
 
 const scene = new THREE.Scene();
 
-const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
-const material = new THREE.MeshNormalMaterial();
-
-const mesh = new THREE.Mesh( geometry, material );
+const loader = new PLYLoader();
+const geometry = await loader.loadAsync( './assets/models/sailboat.ply' );
+const mesh = new THREE.Mesh( geometry );
 scene.add( mesh );
 
 const renderer = new THREE.WebGLRenderer( { antialias: true } );

@@ -15,3 +15,12 @@ Navigate to project root
 run: python -m http.server 8000
 
 Open browser at: http://localhost:8000/index.html
+
+
+Libs Install:
+
+Three: https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js
+
+Core: https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.core.js
+
+List of Addons: https://cdn.jsdelivr.net/npm/three@0.185.1/examples/jsm/
