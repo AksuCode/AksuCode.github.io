@@ -3,6 +3,6 @@ dist
 .git
 .gitignore
 Dockerfile
-npm-debug.log
-.env
 blender
+README.md
+build_wasm.sh
