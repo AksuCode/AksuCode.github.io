@@ -3,16 +3,20 @@ cd "$(dirname "$0")"
 set -e
 
 # !!!
-cd wasm
+cd cpp
 
 IMAGE=wasm-builder
 
 docker build -t "$IMAGE" .
 
-if [ -d ./dist ]; then
-    rm -r ./dist
+OUTDIR="../public/wasm"
+
+if [ -d "$OUTDIR" ]; then
+    rm -r "$OUTDIR"
 fi
 
+mkdir -p "$OUTDIR"
+
 docker run --name temp "$IMAGE"
-docker cp temp:/workspace/build/ ./dist
+docker cp temp:/workspace/build/. "$OUTDIR"
 docker rm temp
