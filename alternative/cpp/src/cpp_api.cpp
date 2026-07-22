@@ -2,7 +2,9 @@
 
 #include <emscripten.h>
 
-EMSCRIPTEN_KEEPALIVE
-void Hello() {
-    printf("Hello World! From C++!\n");
+extern "C" {
+    EMSCRIPTEN_KEEPALIVE
+    int test(int n) {
+        return n * n;
+    }
 }

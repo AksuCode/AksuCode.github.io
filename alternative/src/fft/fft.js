@@ -1,10 +1,8 @@
-import '../../public/wasm/cpp_api.js'
+import { ModulePromise } from '../utils/loader.js';
 
 export async function test() {
-  Module.onRuntimeInitialized = async () => {
-    const api = {
-      Hello: Module.cwrap("Hello", null, []),
-    };
-    api.Hello();
-  };
+  const Module = await ModulePromise;
+
+  const square = Module._test(2);
+  console.log(square);
 }

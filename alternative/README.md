@@ -28,5 +28,5 @@ sudo apt install docker-compose
 cd to this directory!
 
 Run:
-sudo chmod +x docker_run.sh
-sudo ./docker_run.sh
+sudo ./build_wasm.sh
+sudo ./build.sh

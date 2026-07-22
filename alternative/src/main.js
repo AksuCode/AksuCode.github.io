@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 
+import { test } from './fft/fft.js';
+
 const width = window.innerWidth, height = window.innerHeight;
 
 // init
@@ -80,6 +82,8 @@ function animate( time ) {
 	//object3D.rotation.x = time / 2000;
 	object3D.rotation.y = time / 1000;
 	//object3D.rotation.z = time / 1000;
+
+	test();
 
 	renderer.render( scene, camera );
 

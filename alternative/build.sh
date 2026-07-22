@@ -6,6 +6,7 @@ IMAGE=vite-build
 
 docker build -t "$IMAGE" .
 
+docker container inspect temp >/dev/null 2>&1 && docker rm temp
 docker create --name temp "$IMAGE"
 docker cp temp:/app/dist ./dist
 docker rm temp

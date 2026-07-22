@@ -9,5 +9,7 @@ mkdir -p "$OUTDIR"
 emcc ./src/cpp_api.cpp \
     -O3 \
     -s WASM=1 \
+    -s MODULARIZE=1 \
+    -s EXPORT_ES6=1 \
     -s EXPORTED_RUNTIME_METHODS='["cwrap", "HEAP8"]' \
     -o "$OUTDIR"/cpp_api.js
