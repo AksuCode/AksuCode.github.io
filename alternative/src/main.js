@@ -1,7 +1,11 @@
 import * as THREE from 'three';
 import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 
-import { test } from './fft/fft.js';
+import { test } from './cppwrap/fft.js';
+
+import { initSea, updateSea } from './sea/sea.js';
+
+import { initShaderSea, updateShaderSea } from './shadersea/shadersea.js';
 
 const width = window.innerWidth, height = window.innerHeight;
 
@@ -77,6 +81,10 @@ document.body.appendChild( renderer.domElement );
 
 // animation
 
+initSea(scene);
+
+initShaderSea(scene);
+
 function animate( time ) {
 
 	//object3D.rotation.x = time / 2000;
@@ -84,6 +92,10 @@ function animate( time ) {
 	//object3D.rotation.z = time / 1000;
 
 	test();
+
+	updateSea();
+
+	updateShaderSea();
 
 	renderer.render( scene, camera );
 

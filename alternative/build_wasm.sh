@@ -9,22 +9,15 @@ IMAGE=wasm-builder
 
 docker build -t "$IMAGE" .
 
-OUTDIR_WASM="../public/wasm"
-OUTDIR_JS="../src/wasm"
+OUTDIR="../wasm"
 
-if [ -d "$OUTDIR_WASM" ]; then
-    rm -r "$OUTDIR_WASM"
+if [ -d "$OUTDIR" ]; then
+    rm -r "$OUTDIR"
 fi
 
-if [ -d "$OUTDIR_JS" ]; then
-    rm -r "$OUTDIR_JS"
-fi
-
-mkdir -p "$OUTDIR_WASM"
-mkdir -p "$OUTDIR_JS"
+mkdir -p "$OUTDIR"
 
 docker container inspect temp >/dev/null 2>&1 && docker rm temp
 docker run --name temp "$IMAGE"
-docker cp temp:/workspace/build/cpp_api.wasm "$OUTDIR_WASM"
-docker cp temp:/workspace/build/cpp_api.js "$OUTDIR_JS"
+docker cp temp:/workspace/build/. "$OUTDIR"
 docker rm temp

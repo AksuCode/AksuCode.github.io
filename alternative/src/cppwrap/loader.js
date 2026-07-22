@@ -1,4 +1,4 @@
-import createModule from "../wasm/cpp_api.js";
+import createModule from "../../wasm/cpp_api.js";
 
 export const ModulePromise = createModule(
     {

@@ -15,5 +15,7 @@ if [ -d ../docs/alternative ]; then
     rm -r ../docs/alternative
 fi
 mkdir ../docs/alternative
+mkdir ./dist/wasm
+cp -r ./wasm/*.wasm ./dist/wasm/
 cp -r ./dist/* ../docs/alternative/
 rm -r ./dist
